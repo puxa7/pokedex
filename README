@@ -1,0 +1,5 @@
+Żeby to uruchomić, trzeba wpisać polecenie:
+npm run dev
+
+Żeby uruchomić testy, trzeba wpisać polecenie:
+npm run test
