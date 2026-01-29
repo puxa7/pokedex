@@ -1,7 +1,10 @@
 import { startREPL } from "./repl.js";
+import type { State } from "./state.js"
 
 function main() {
-    startREPL();
+    cosnt object: State = {
+        
+    }
 }
 
 main();
