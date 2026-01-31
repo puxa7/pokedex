@@ -1,11 +1,9 @@
 import type { State } from "./state.js";
 
-function cleanInput(text: string): string[] {
-  return text
-    .toLowerCase()
-    .trim()
-    .split(/\s+/);
+export function cleanInput(text: string) {
+    return text.toLowerCase().trim().split(/\s+/);
 }
+
 
 export async function startREPL(state: State) {
   state.rl.prompt();

@@ -1,8 +1,5 @@
 export function cleanInput(text) {
-    return text
-        .toLowerCase()
-        .trim()
-        .split(/\s+/);
+    return text.toLowerCase().trim().split(/\s+/);
 }
 export async function startREPL(state) {
     state.rl.prompt();

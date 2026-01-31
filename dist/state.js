@@ -4,7 +4,7 @@ import { commandHelp } from "./command_help.js";
 import { commandMap } from "./command_map.js";
 import { commandMapb } from "./command_mapb.js";
 import { PokeAPI } from "./pokeapi.js";
-export function getCommands() {
+function getCommands() {
     return {
         exit: {
             name: "exit",
@@ -26,7 +26,6 @@ export function getCommands() {
             description: "Displays previous 20 location areas",
             callback: commandMapb,
         },
-        // can add more commands here
     };
 }
 export function initState() {
