@@ -7,10 +7,10 @@ export function cleanInput(text: string): string[] {
     .split(/\s+/);
 }
 
-export function startREPL(state: State) {
+export async function startREPL(state: State) {
   state.rl.prompt();
 
-  state.rl.on("line", (input: string) => {
+  state.rl.on("line", async (input: string) => {
     const words = cleanInput(input);
     const command = words[0];
 
@@ -18,8 +18,7 @@ export function startREPL(state: State) {
 
     if (handler) {
       try {
-        //handler.callback(commands);
-        handler.callback(state);
+        await handler.callback(state);
         state.rl.prompt();
 
       } catch (err) {

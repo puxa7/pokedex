@@ -1,10 +1,10 @@
 import { startREPL } from "./repl.js";
-import type { State } from "./state.js"
+import { initState } from "./state.js";
 
 function main() {
-    cosnt object: State = {
-        
-    }
+    const state = initState()
+    startREPL(state);
 }
 
 main();
+
