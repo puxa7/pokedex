@@ -19,7 +19,7 @@ export type State = {
     pokeapi: PokeAPI;
 };
 
-export function getCommands(): Record<string, CLICommand> {
+function getCommands(): Record<string, CLICommand> {
   return {
     exit: {
       name: "exit",
@@ -41,8 +41,6 @@ export function getCommands(): Record<string, CLICommand> {
       description: "Displays previous 20 location areas",
       callback: commandMapb,
     },
-
-    // can add more commands here
   };
 }
 

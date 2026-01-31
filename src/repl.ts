@@ -1,6 +1,6 @@
 import type { State } from "./state.js";
 
-export function cleanInput(text: string): string[] {
+function cleanInput(text: string): string[] {
   return text
     .toLowerCase()
     .trim()
