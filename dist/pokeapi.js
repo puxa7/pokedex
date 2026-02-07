@@ -1,7 +1,7 @@
 import { Cache } from "./pokecache.js";
 export class PokeAPI {
     static baseURL = "https://pokeapi.co/api/v2";
-    obiektCache = new Cache(17050);
+    obiektCache = new Cache(5000);
     constructor() {
     }
     async fetchLocations(pageURL) {
@@ -20,7 +20,13 @@ export class PokeAPI {
         return data;
     }
     async fetchLocation(locationName) {
-        // implement this
-        throw new Error("Not implemented yet");
+        const url = `${PokeAPI.baseURL}/location-area/${locationName}`;
+        const cached = this.obiektCache.get(url);
+        if (cached) {
+            return cached;
+        }
+        let response = await fetch(url);
+        let data = await response.json();
+        return data;
     }
 }

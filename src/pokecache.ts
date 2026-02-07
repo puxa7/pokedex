@@ -31,19 +31,6 @@ export class Cache {
         }
     }
 
-    /*#reap() {
-        const now = Date.now();
-        console.log(`--- REAP URUCHOMIONY: ${now} ---`);
-        for (const [key, value] of this.#cache) {
-            const age = now - value.createdAt;
-            console.log(`Klucz: ${key}, Wiek: ${age}, Interwał: ${this.#interval}`);
-            if (age >= this.#interval) {
-                console.log(`USUWANIE: ${key}`);
-                this.#cache.delete(key);
-            }
-        }
-    }*/
-
     #startReapLoop() {
         this.#reapIntervalId = setInterval(() => { this.#reap() }, this.#interval);
     }

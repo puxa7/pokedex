@@ -11,12 +11,13 @@ export async function startREPL(state: State) {
   state.rl.on("line", async (input: string) => {
     const words = cleanInput(input);
     const command = words[0];
+    const args = words.slice(1);
 
     const handler = state.commands[command];
 
     if (handler) {
       try {
-        await handler.callback(state);
+        await handler.callback(state, ...args);
         state.rl.prompt();
 
       } catch (err) {
