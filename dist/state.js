@@ -5,6 +5,7 @@ import { commandMap } from "./command_map.js";
 import { commandMapb } from "./command_mapb.js";
 import { commandExplore } from "./command_explore.js";
 import { commandCatch } from "./command_catch.js";
+import { commandInspect } from "./command_inspect.js";
 import { PokeAPI } from "./pokeapi.js";
 function getCommands() {
     return {
@@ -37,6 +38,11 @@ function getCommands() {
             name: "catch",
             description: "Catch the Pokémon",
             callback: commandCatch,
+        },
+        inspect: {
+            name: "inspect",
+            description: "Inspect the Pokémon",
+            callback: commandInspect,
         },
     };
 }

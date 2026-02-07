@@ -5,6 +5,7 @@ import { commandMap } from "./command_map.js";
 import { commandMapb } from "./command_mapb.js";
 import { commandExplore } from "./command_explore.js";
 import { commandCatch} from "./command_catch.js";
+import {commandInspect} from "./command_inspect.js"
 import { PokeAPI } from "./pokeapi.js";
 
 export type CLICommand = {
@@ -13,11 +14,38 @@ export type CLICommand = {
   callback: (state: State, ...args: string[]) => Promise<void>;
 };
 
-export type Pokemon = {
+/*export type Pokemon = {
   name: string;
   base_experience: number;
+  height: number;
+  weight: number;
+  stats:{
+    base_stat: number;
+    stat:{
+      name: string;
+    }[];
+  }
 
-}
+}*/
+
+export type Pokemon = {
+  name: string;
+  height: number;
+  weight: number;
+  base_experience: number;
+  stats: {
+    base_stat: number;
+    stat: {
+      name: string;
+    };
+  }[];
+  types: {
+    type: {
+      name: string;
+    };
+  }[];
+};
+
 
 export type State = {
     rl: Interface;
@@ -59,6 +87,11 @@ function getCommands(): Record<string, CLICommand> {
       name: "catch",
       description: "Catch the Pokémon",
       callback: commandCatch,
+    },
+    inspect: {
+      name: "inspect",
+      description: "Inspect the Pokémon",
+      callback: commandInspect,
     },
   };
 }
