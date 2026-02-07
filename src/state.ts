@@ -4,8 +4,9 @@ import { commandHelp } from "./command_help.js";
 import { commandMap } from "./command_map.js";
 import { commandMapb } from "./command_mapb.js";
 import { commandExplore } from "./command_explore.js";
-import { commandCatch} from "./command_catch.js";
-import {commandInspect} from "./command_inspect.js"
+import { commandCatch } from "./command_catch.js";
+import { commandInspect } from "./command_inspect.js"
+import { commandPokedex } from "./command_pokedex.js"
 import { PokeAPI } from "./pokeapi.js";
 
 export type CLICommand = {
@@ -48,12 +49,12 @@ export type Pokemon = {
 
 
 export type State = {
-    rl: Interface;
-    commands: Record<string, CLICommand>;
-    nextLocationsURL: string | null;
-    prevLocationsURL: string | null;
-    pokeapi: PokeAPI;
-    pokedex: Record<string, Pokemon>;
+  rl: Interface;
+  commands: Record<string, CLICommand>;
+  nextLocationsURL: string | null;
+  prevLocationsURL: string | null;
+  pokeapi: PokeAPI;
+  pokedex: Record<string, Pokemon>;
 };
 
 function getCommands(): Record<string, CLICommand> {
@@ -92,24 +93,28 @@ function getCommands(): Record<string, CLICommand> {
       name: "inspect",
       description: "Inspect the Pokémon",
       callback: commandInspect,
+    }, pokedex: {
+      name: "pokedex",
+      description: "List all caught pokemon",
+      callback: commandPokedex,
     },
   };
 }
 
-export function initState(): State{
-    const commands = getCommands();
+export function initState(): State {
+  const commands = getCommands();
 
-    const rl = createInterface({
-        input: process.stdin,
-        output: process.stdout,
-        prompt: "Pokedex > "
-      });
-    
-      const nextLocationsURL = null;
-      const prevLocationsURL = null
-      const pokeapi = new PokeAPI();
-      const pokedex = {};
+  const rl = createInterface({
+    input: process.stdin,
+    output: process.stdout,
+    prompt: "Pokedex > "
+  });
 
-      return {rl, commands, nextLocationsURL, prevLocationsURL, pokeapi, pokedex};
+  const nextLocationsURL = null;
+  const prevLocationsURL = null
+  const pokeapi = new PokeAPI();
+  const pokedex = {};
+
+  return { rl, commands, nextLocationsURL, prevLocationsURL, pokeapi, pokedex };
 }
 
