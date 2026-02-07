@@ -1,4 +1,5 @@
 import { Cache } from "./pokecache.js"
+import type { Pokemon } from "./state.js";
 
 export class PokeAPI {
   private static readonly baseURL = "https://pokeapi.co/api/v2";
@@ -24,7 +25,7 @@ export class PokeAPI {
       this.obiektCache.add(url, data);
     }
 
-    return data
+    return data;
   }
 
   async fetchLocation(locationName: string): Promise<Location> {
@@ -34,6 +35,15 @@ export class PokeAPI {
     if (cached) {
       return cached;
     }
+
+    let response = await fetch(url);
+    let data = await response.json();
+    return data;
+  }
+
+
+  async fetchPokemon(pokemonName: string): Promise<Pokemon> {
+    const url = `${PokeAPI.baseURL}/pokemon/${pokemonName}`;
 
     let response = await fetch(url);
     let data = await response.json();
@@ -58,3 +68,4 @@ export type Location = {
     };
   }[];
 };
+

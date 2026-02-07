@@ -4,6 +4,7 @@ import { commandHelp } from "./command_help.js";
 import { commandMap } from "./command_map.js";
 import { commandMapb } from "./command_mapb.js";
 import { commandExplore } from "./command_explore.js";
+import { commandCatch} from "./command_catch.js";
 import { PokeAPI } from "./pokeapi.js";
 
 export type CLICommand = {
@@ -12,12 +13,19 @@ export type CLICommand = {
   callback: (state: State, ...args: string[]) => Promise<void>;
 };
 
+export type Pokemon = {
+  name: string;
+  base_experience: number;
+
+}
+
 export type State = {
     rl: Interface;
     commands: Record<string, CLICommand>;
     nextLocationsURL: string | null;
     prevLocationsURL: string | null;
     pokeapi: PokeAPI;
+    pokedex: Record<string, Pokemon>;
 };
 
 function getCommands(): Record<string, CLICommand> {
@@ -47,6 +55,11 @@ function getCommands(): Record<string, CLICommand> {
       description: "List of all the Pokémon in a given area",
       callback: commandExplore,
     },
+    catch: {
+      name: "catch",
+      description: "Catch the Pokémon",
+      callback: commandCatch,
+    },
   };
 }
 
@@ -62,7 +75,8 @@ export function initState(): State{
       const nextLocationsURL = null;
       const prevLocationsURL = null
       const pokeapi = new PokeAPI();
+      const pokedex = {};
 
-      return {rl, commands, nextLocationsURL, prevLocationsURL, pokeapi};
+      return {rl, commands, nextLocationsURL, prevLocationsURL, pokeapi, pokedex};
 }
 

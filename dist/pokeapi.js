@@ -29,4 +29,10 @@ export class PokeAPI {
         let data = await response.json();
         return data;
     }
+    async fetchPokemon(pokemonName) {
+        const url = `${PokeAPI.baseURL}/pokemon/${pokemonName}`;
+        let response = await fetch(url);
+        let data = await response.json();
+        return data;
+    }
 }

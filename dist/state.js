@@ -4,6 +4,7 @@ import { commandHelp } from "./command_help.js";
 import { commandMap } from "./command_map.js";
 import { commandMapb } from "./command_mapb.js";
 import { commandExplore } from "./command_explore.js";
+import { commandCatch } from "./command_catch.js";
 import { PokeAPI } from "./pokeapi.js";
 function getCommands() {
     return {
@@ -32,6 +33,11 @@ function getCommands() {
             description: "List of all the Pokémon in a given area",
             callback: commandExplore,
         },
+        catch: {
+            name: "catch",
+            description: "Catch the Pokémon",
+            callback: commandCatch,
+        },
     };
 }
 export function initState() {
@@ -44,5 +50,6 @@ export function initState() {
     const nextLocationsURL = null;
     const prevLocationsURL = null;
     const pokeapi = new PokeAPI();
-    return { rl, commands, nextLocationsURL, prevLocationsURL, pokeapi };
+    const pokedex = {};
+    return { rl, commands, nextLocationsURL, prevLocationsURL, pokeapi, pokedex };
 }
